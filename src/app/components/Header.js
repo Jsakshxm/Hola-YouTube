@@ -40,7 +40,7 @@ const Header = () => {
 
   return (
     <>
-    <div className="relative grid grid-flow-col p-2 m-2 shadow-lg">
+    <div className="fixed relative grid grid-flow-col p-2 m-2 shadow-lg">
       <div className="flex col-span-1">
         <img
           src="https://cdn.iconscout.com/icon/free/png-512/free-hamburger-menu-462145.png?f=webp&w=512"
@@ -85,7 +85,7 @@ const Header = () => {
           <ul className="absolute bg-white border border-gray-300 rounded ml-80">
             {suggestions.map((suggestion, index) => (
              <> <li key={index} className="p-2 cursor-pointer">
-                {suggestion}
+             🔍{suggestion}
               </li> </>
             ))}
           </ul>)}

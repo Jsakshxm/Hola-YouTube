@@ -7,7 +7,7 @@ import store from './utils/store'
 
 const page = () => {
   return (
-<Provider store={store}>   <div><Header ></Header><Body></Body></div> </Provider>
+<Provider store={store}>   <div className=''><Header ></Header><Body></Body></div> </Provider>
   )
 }
 

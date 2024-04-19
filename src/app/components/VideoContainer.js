@@ -20,8 +20,8 @@ const VideoContainer = () => {
       const data = await fetch(YOUTUBE_API);
       const json = await data.json();
 
-      setVideos(json.items || []); // Set the state first, ensure it's an array or use an empty array
-      dispatch(updateData({ json: json })); // Dispatch the videos from API response
+      setVideos(json.items || []); 
+      dispatch(updateData({ json: json })); 
     } catch (error) {
       console.error('Error fetching videos:', error);
     }

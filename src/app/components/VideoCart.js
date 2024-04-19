@@ -7,7 +7,7 @@ const VideoCart = ({ info }) => {
   const {id}=info
 
   return (
-    <div className='p-3 m-3 rounded-lg w-72'>
+    <div className='p-2 m-2 rounded-lg w-[19.5rem]'>
       <Link href={`/watch/${id}`}>
         
           <img src={thumbnails.medium.url} alt="video" className='rounded-md cursor-pointer' />

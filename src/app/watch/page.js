@@ -6,7 +6,7 @@ import Sidebar from '../components/Sidebar'
 
 const page = () => {
   return (
-    <Provider store={store}><Header></Header><Sidebar></Sidebar></Provider>
+    <Provider store={store}><Header /><Sidebar /></Provider>
   )
 }
 

@@ -1,19 +1,25 @@
 "use client"
-import Watchpage from '@/app/components/Watchpage'
-import Header from '@/app/components/Header'
-import Sidebar from '@/app/components/Sidebar'
-import { Provider } from 'react-redux'
-import store from '@/app/utils/store'
-import LiveChat from '@/app/components/LiveChat'
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from '@/app/utils/store';
+import Header from '@/app/components/Header';
+import Sidebar from '@/app/components/Sidebar';
+import Watchpage from '@/app/components/Watchpage';
+import LiveChat from '@/app/components/LiveChat';
 
-
-const Body = ({params}) => {
-
+const Body = ({ params }) => {
   return (
     <Provider store={store}>
-    <Header></Header>
-    <div className='flex flex-wrap w-full'><Sidebar /><Watchpage params={params.videoId}/> <div className='w-[420px] p-2 pr-2 lg:w-[420px] sm:w-full md:w-full '><LiveChat className=""></LiveChat></div> </div></Provider>
-  )
+      <Header />
+      <div className={`flex flex-wrap w-screen md:grid md:grid-cols-12 overflow-hidden` } >
+        <Sidebar className="absolute z-10 " />
+        <Watchpage params={params.videoId} className="md:col-span-7" />
+        <div className='absolute p-2 pr-2 md:col-span-5 top-72 md:top-0'>
+          <LiveChat />
+        </div>
+      </div>
+    </Provider>
+  );
 }
 
-export default Body
+export default Body;

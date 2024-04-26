@@ -1,14 +1,14 @@
-"use client"
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addmessage } from "../utils/chatslice";
 import ChatMessage from "./ChatMessage";
 
 const LiveChat = () => {
-  const [Text, setText] = useState("");
+  const [text, setText] = useState("");
   const dispatch = useDispatch();
   const chatMessages = useSelector((store) => store.chat.message);
   const randomName = require('random-indian-name');
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -26,11 +26,11 @@ const LiveChat = () => {
   }, [dispatch]);
 
   const handleSendMessage = () => {
-    if (Text.trim() !== "") {
+    if (text.trim() !== "") {
       dispatch(
         addmessage({
           name: "Saksham",
-          message: Text,
+          message: text,
         })
       );
       setText(""); // Clear the input after sending the message
@@ -38,9 +38,8 @@ const LiveChat = () => {
   };
 
   return (
-    <>
-      <div className="ml-2 border-2 h-[600px] w-full border-black bg-slate-100 rounded-lg overflow-y-scroll flex-col-reverse">
-        Live Chat
+    <div className={`flex flex-col-reverse border-2 border-black rounded-lg bg-slate-100 md:w-[22rem] w-[23.4rem]  items-center ${isMenuOpen ? 'md:w-[23rem] opacity-5' : 'w-[23rem]'} md:absolute md:left-[1080px]`}>
+      <div className={`overflow-y-scroll ${isMenuOpen ? 'md:h-[550px]' : 'h-[700px]'} md:h-[550px]`}>
         {chatMessages.map((chat, index) => (
           <ChatMessage
             name={chat.name}
@@ -48,36 +47,34 @@ const LiveChat = () => {
             key={index}
           />
         ))}
-        <div className="border border-black rounded-md">
-          {/* Additional UI elements can be added here if needed */}
-        </div>
-        <div className="flex w-full border">
+      </div>
+      <div className="p-2">
+        <div className="flex items-center space-x-2">
           <img
             src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg"
-            alt=""
-            className="h-8 mr-2"
+            alt="Profile Icon"
+            className="h-8"
           />
-          Saksham Jain
+          <span>Saksham Jain</span>
         </div>
-        <div className="flex">
+        <div className="flex items-center mt-2">
           <input
             type="text"
-            className="h-10 w-72"
-            placeholder="Chat"
-            value={Text}
-            onChange={(e) => {
-              setText(e.target.value);
-            }}
+            className="flex-1 h-10 p-2 border border-gray-300 rounded-md"
+            placeholder="Type a message..."
+            value={text}
+            onChange={(e) => setText(e.target.value)}
           />
-          <img
-            src="https://e7.pngegg.com/pngimages/891/367/png-clipart-computer-icons-symbol-send-email-button-miscellaneous-blue-thumbnail.png"
-            alt=""
-            className="ml-[100px] size-8"
+          <button
+            type="button"
+            className="p-2 ml-2 text-white bg-blue-500 rounded-md"
             onClick={handleSendMessage}
-          />
+          >
+            Send
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
